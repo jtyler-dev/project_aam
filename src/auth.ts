@@ -22,4 +22,11 @@ export const {
     }),
   ],
   adapter: PrismaAdapter(prisma),
+  callbacks: {
+    session: async ({session, user}) => {
+      session.user.id = user.id
+      session.user.userName = "test_userName"
+      return session
+    }
+  }
 })

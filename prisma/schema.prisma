@@ -10,7 +10,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Auth.js https://authjs.dev/reference/adapter/prisma
+// an account is a way for a user to identify themselves using
+// thrid party services.
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -46,6 +47,10 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
 }
 
 model VerificationToken {
@@ -55,5 +60,3 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
-
-// -- end Auth.js tables --
