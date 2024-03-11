@@ -1,14 +1,20 @@
 import { auth } from '@/auth';
 import { useProtectedRoute } from '@/hooks';
 import { DASHBOARD } from '@/constants/Routes'
+import {SideBarMenuItem, SideBar} from '@/components/SideBar';
+import { BeakerIcon } from '@heroicons/react/24/solid'
 
 export default async function Dashboard() {
   const session = await auth();
-  useProtectedRoute({session, callbackUrl: DASHBOARD});
+  // useProtectedRoute({session, callbackUrl: DASHBOARD});
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Dashboard
-    </main>
+    <>
+      <SideBar>
+      </SideBar>
+      <main className="lg:pl-20">
+        test
+      </main>
+    </>
   )
 }
